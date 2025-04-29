@@ -27,9 +27,11 @@ local a = setmetatable({}, {
 a.termmode = {
   TermOpen = function(ev)
     -- why :term won't trigger BufEnter...
-    if ev.buf == api.nvim_get_current_buf() then
-      vim.defer_fn(function() vim.cmd [[startinsert]] end, 10)
-    end
+    vim.schedule(function() -- if no schedule, `nvim_get_current_buf` will always be term buffer?
+      if ev.buf == api.nvim_get_current_buf() then
+        vim.defer_fn(function() vim.cmd [[startinsert]] end, 10)
+      end
+    end)
     vim.keymap.set({ 'n', 't' }, '<c-\\><c-n>', '<cmd>let b:term_insert=0<cr><c-\\><c-n>')
   end,
   ModeChanged = { pattern = '*:t', command = [[let b:term_insert = 1]] },
