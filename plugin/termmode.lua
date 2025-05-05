@@ -46,7 +46,9 @@ a.termmode = {
       -- when switch buf, or pty jobstop...
       vim.defer_fn(function()
         vim.cmd [[stopinsert]]
+        if not api.nvim_buf_is_valid(ev.buf) then return end
         vim.defer_fn(function()
+          if not api.nvim_buf_is_valid(ev.buf) then return end
           if b.term_pos then api.nvim_win_set_cursor(0, b.term_pos) end
         end, 10)
       end, 10)
