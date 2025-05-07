@@ -1,3 +1,1 @@
-## persistant termmode
-
-Save and restore `mode`/`cursor` for terminal buffer.
+Save and restore `mode`/`cursor` for each terminal buffer.
