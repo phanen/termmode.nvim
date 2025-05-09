@@ -26,7 +26,7 @@ M.enable = function()
         '<cmd>let b:term_insert=0<cr><c-\\><c-n>',
         { buffer = ev.buf }
       )
-      vim.keymap.set({ 't' }, 'q', function()
+      vim.keymap.set({ 'n' }, 'q', function()
         local chan = vim.bo.channel
         local is_running = fn.jobwait({ chan }, 0)[1] == -1
         return is_running and fn.jobstop(chan) or vim.cmd [[bwipe!]]
