@@ -33,7 +33,7 @@ M.enable = function()
       end, { buffer = ev.buf })
     end,
   })
-  api.nvim_create_autocmd('BufWinEnter', {
+  api.nvim_create_autocmd('BufEnter', {
     group = ns,
     pattern = 'term://*',
     callback = function(ev)
